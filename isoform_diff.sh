@@ -55,17 +55,11 @@ if [ $? -eq 0 ]; then
 	# Create the PTM_Results directory if it doesn't exist
 	mkdir -p PTM_Results
 	
-	# Move the output files from glycan_detection directory to PTM_Results directory
-	mv glycan_detection/*p58_A*_glycans_pos.out PTM_Results/
-
-	# Move the fasta_ubicolor files from ESA-UbiSite directories to PTM_Results directory
-	mv ESA-UbiSite/*/p58_A*.fasta_ubicolor PTM_Results/
-
 	# Move the output files from glycan_detection directory to PTM_Results directory and rename to .txt
 	for file in glycan_detection/*p58_A*_glycans_pos.out; do
 		mv "$file" "PTM_Results/$(basename "$file" .out).txt"
 	done
-
+	
 	# Move the fasta_ubicolor files from ESA-UbiSite directories to PTM_Results directory and rename to .txt
 	for file in ESA-UbiSite/*/p58_A*.fasta_ubicolor; do
 		mv "$file" "PTM_Results/$(basename "$file" .fasta_ubicolor).txt"
