@@ -55,9 +55,16 @@ if [ $? -eq 0 ]; then
 	# Create the PTM_Results directory if it doesn't exist
 	mkdir -p PTM_Results
 	
-	# Move the output files from glycan_detection directory to PTM_Results directory and rename to .txt
+	# Move the output files from glycan_detection directory to PTM_Results directory and rename to NLG_p58A(1,2,or3).txt
 	for file in glycan_detection/*p58_A*_glycans_pos.out; do
-		mv "$file" "PTM_Results/$(basename "$file" .out).txt"
+		# Extract the ID (p58_A1, p58_A2, p58_A3) from the file name
+		id=$(basename "$file" | grep -o 'p58_A[0-9]*')
+	
+		# Construct the new file name with NLG_p58A(1,2,or3).txt format
+		new_file_name="NLG_${id}.txt"
+	
+		# Move the file to PTM_Results directory with the new file name
+		mv "$file" "PTM_Results/$new_file_name"
 	done
 	
 	# Move the fasta_ubicolor files from ESA-UbiSite directories to PTM_Results directory and rename to .txt
