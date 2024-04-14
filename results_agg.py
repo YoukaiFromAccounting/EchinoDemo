@@ -16,7 +16,7 @@ def extract_numbers_from_file(file_path):
     return numbers
 
 # Directory containing the files
-directory = "PTM_results"
+directory = "PTM_Results"
 
 # Initialize dictionaries to store data
 nlg_data = {}
