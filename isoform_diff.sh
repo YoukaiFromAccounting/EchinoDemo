@@ -62,7 +62,8 @@ if [ $? -eq 0 ]; then
 	
 	# Move the fasta_ubicolor files from ESA-UbiSite directories to PTM_Results directory and rename to .txt
 	for file in ESA-UbiSite/*/p58_A*.fasta_ubicolor; do
-		mv "$file" "PTM_Results/$(basename "$file" .fasta_ubicolor).txt"
+		base_name=$(basename "$file" .fasta_ubicolor)
+		mv "$file" "PTM_Results/UBI_${base_name}.txt"
 	done
 	
 	echo ""
