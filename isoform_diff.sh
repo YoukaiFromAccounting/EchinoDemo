@@ -57,11 +57,19 @@ if [ $? -eq 0 ]; then
 	
 	# Move the output files from glycan_detection directory to PTM_Results directory
 	mv glycan_detection/*p58_A*_glycans_pos.out PTM_Results/
-	rename 's/\.out$/.txt/' PTM_Results/*.out
-	
+
 	# Move the fasta_ubicolor files from ESA-UbiSite directories to PTM_Results directory
 	mv ESA-UbiSite/*/p58_A*.fasta_ubicolor PTM_Results/
-	rename 's/\.fasta_ubicolor$/.txt/' PTM_Results/*.fasta_ubicolor
+
+	# Move the output files from glycan_detection directory to PTM_Results directory and rename to .txt
+	for file in glycan_detection/*p58_A*_glycans_pos.out; do
+		mv "$file" "PTM_Results/$(basename "$file" .out).txt"
+	done
+
+	# Move the fasta_ubicolor files from ESA-UbiSite directories to PTM_Results directory and rename to .txt
+	for file in ESA-UbiSite/*/p58_A*.fasta_ubicolor; do
+		mv "$file" "PTM_Results/$(basename "$file" .fasta_ubicolor).txt"
+	done
 	
 	echo ""
 	echo "Post-Translational Modifications retrieved!"
