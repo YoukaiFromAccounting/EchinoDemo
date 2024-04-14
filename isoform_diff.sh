@@ -56,11 +56,15 @@ if [ $? -eq 0 ]; then
 	mkdir -p PTM_Results
 	
 	# Move the output files from glycan_detection directory to PTM_Results directory
-	mv glycan_detection/*p58_A*_glycans_binary.out PTM_Results/
+	mv glycan_detection/*p58_A*_glycans_pos.out PTM_Results/
+	rename 's/\.out$/.txt/' PTM_Results/*.out
 	
 	# Move the fasta_ubicolor files from ESA-UbiSite directories to PTM_Results directory
 	mv ESA-UbiSite/*/p58_A*.fasta_ubicolor PTM_Results/
+	rename 's/\.fasta_ubicolor$/.txt/' PTM_Results/*.fasta_ubicolor
 	
+	echo ""
+	echo "Post-Translational Modifications retrieved!"
 else
     echo "Error: echino_setup.sh script failed to complete."
 fi
