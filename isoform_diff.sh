@@ -73,6 +73,9 @@ if [ $? -eq 0 ]; then
 		mv "$file" "PTM_Results/UBI_${base_name}.txt"
 	done
 	
+	echo "Aggregating PTM results..."
+	python3 results_agg.py
+	
 	echo ""
 	echo "Post-Translational Modifications retrieved!"
 else
